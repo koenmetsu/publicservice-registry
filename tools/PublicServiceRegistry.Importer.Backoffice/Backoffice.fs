@@ -144,7 +144,7 @@ module PublicService.Backoffice
           body = HttpRequestBody.TextRequest updateRequest,
           headers = [ ContentTypeWithEncoding (HttpContentTypes.Json, Text.Encoding.UTF8)
                       Authorization (sprintf "Bearer %s" token) ],
-          httpMethod = HttpMethod.Patch,
+          httpMethod = HttpMethod.Put,
           silentHttpErrors = false
         )
       |> Success
