@@ -46,12 +46,26 @@ let runSetIpdcCode file =
   |> SetIpdcCode.importRows apiBaseUrl token
   |> Info.printResults
 
+let runAddLifeCycleStage file =
+  Info.printTitle "! ADD LIFE CYCLE STAGE !"
+
+  Info.printFileInfo file
+
+  AddLifeCycleStage.getRows file
+  |> AddLifeCycleStage.validateRows
+  |> Info.printRowsInfo apiBaseUrl
+  |> AddLifeCycleStage.importRows apiBaseUrl token
+  |> Info.printResults
+
 [<EntryPoint>]
 let main _ =
     System.Console.CursorVisible <- false
 
-    System.IO.Directory.GetFiles "Import/IpdcId"
-    |> Seq.iter runSetIpdcCode
+    System.IO.Directory.GetFiles "Import/Status"
+    |> Seq.iter runAddLifeCycleStage
+
+    // System.IO.Directory.GetFiles "Import/IpdcId"
+    // |> Seq.iter runSetIpdcCode
 
     //System.IO.Directory.GetFiles "Import/SetAltLabelSubsidieRegister"
     //|> Seq.iter runAltNameSubsidieRegister

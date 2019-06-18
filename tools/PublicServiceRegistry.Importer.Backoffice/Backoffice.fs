@@ -151,6 +151,30 @@ module PublicService.Backoffice
         with
     | ex -> ex |> fail
 
+  let postLifeCycleStage apiBaseUri token lifeCycleStageType fromDate toDate dvrCode =
+    try
+      let postRequest =
+        AddLifeCycleStage
+          .AddLifeCycleStage(
+              levensloopfaseType = lifeCycleStageType,
+              vanaf = fromDate,
+              tot = toDate
+              )
+          .JsonValue
+          .ToString()
+
+      Http.Request
+        ( url = sprintf "%s/v1/dienstverleningen/%s/levensloop/fases" apiBaseUri dvrCode,
+          body = HttpRequestBody.TextRequest postRequest,
+          headers = [ ContentTypeWithEncoding (HttpContentTypes.Json, Text.Encoding.UTF8)
+                      Authorization (sprintf "Bearer %s" token) ],
+          httpMethod = HttpMethod.Post,
+          silentHttpErrors = false
+        )
+      |> Success
+        with
+    | ex -> ex |> fail
+
   let getPublicService apiBaseUri dvrCode =
     try
 

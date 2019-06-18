@@ -35,6 +35,7 @@
     <Compile Include="SetCompetentAuthority.fs" />
     <Compile Include="SetAltNameSubsidieRegister.fs" />
     <Compile Include="SetIpdcCode.fs" />
+    <Compile Include="AddLifeCycleStage.fs" />
     <Compile Include="Info.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

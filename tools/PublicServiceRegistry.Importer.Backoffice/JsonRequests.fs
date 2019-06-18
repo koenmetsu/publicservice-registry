@@ -53,3 +53,14 @@ module PublicService.JsonRequests
   """
 
   type SetIpdcCode = JsonProvider<setIpdcCodeSample, RootName = "SetIpdcCode">
+
+  [<Literal>]
+  let addLifeCycleStageSample = """
+  {
+    "levensloopfaseType": "string",
+    "vanaf": "string",
+    "tot": "string"
+  }
+  """
+
+  type AddLifeCycleStage = JsonProvider<addLifeCycleStageSample, RootName = "AddLifeCycleStage">
