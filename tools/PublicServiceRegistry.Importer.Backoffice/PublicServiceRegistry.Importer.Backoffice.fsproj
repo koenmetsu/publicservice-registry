@@ -19,6 +19,12 @@
     <Content Include="Import/Register/batch_20190111_sarah.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Import/IpdcId/ipdc-id.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Import/Status/dvr-status.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="paket.references" />
     <Compile Include="Rop.fs" />
     <Compile Include="Csv.fs" />
