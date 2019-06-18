@@ -24,8 +24,11 @@ module SetIpdcCode
 
   let importRow counter apiBaseUrl token rowCount cursorTop (row:IpdcIds.Row) =
 
+    let toIpdcCode x =
+      sprintf "%04i" x
+
     let result =
-      putIpdcCode apiBaseUrl token row.``Ipdc-ID-link`` row.Id
+      putIpdcCode apiBaseUrl token (toIpdcCode row.``Ipdc-ID-link``) row.Id
 
     let counter =
       match result with

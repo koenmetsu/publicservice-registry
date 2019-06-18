@@ -48,7 +48,7 @@ module PublicService.JsonRequests
   [<Literal>]
   let setIpdcCodeSample = """
   {
-    "ipdcCode": "1234"
+    "ipdcCode": "string"
   }
   """
 
