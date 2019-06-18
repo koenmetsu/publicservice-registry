@@ -44,3 +44,12 @@ module PublicService.JsonRequests
   """
 
   type UpdateAlternativeNameSubsidieRegister = JsonProvider<updateAlternativeNameSubsidieRegisterSample, RootName = "UpdateAlternativeNameSubsidieRegister">
+
+  [<Literal>]
+  let setIpdcCodeSample = """
+  {
+    "ipdcCode": "1234"
+  }
+  """
+
+  type SetIpdcCode = JsonProvider<setIpdcCodeSample, RootName = "SetIpdcCode">

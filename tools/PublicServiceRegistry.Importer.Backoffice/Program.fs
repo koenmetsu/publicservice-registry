@@ -36,12 +36,22 @@ let runSetCompetentAuthority file =
   |> SetCompetentAuthority.importRows apiBaseUrl token
   |> Info.printResults
 
+let runSetIpdcCode file =
+  Info.printTitle "! SET IPDC CODE !"
+
+  Info.printFileInfo file
+
+  SetIpdcCode.getRows file
+  |> Info.printRowsInfo apiBaseUrl
+  |> SetIpdcCode.importRows apiBaseUrl token
+  |> Info.printResults
+
 [<EntryPoint>]
 let main _ =
     System.Console.CursorVisible <- false
 
-    System.IO.Directory.GetFiles "Import/Register"
-    |> Seq.iter runRegister
+    System.IO.Directory.GetFiles "Import/IpdcId"
+    |> Seq.iter runSetIpdcCode
 
     //System.IO.Directory.GetFiles "Import/SetAltLabelSubsidieRegister"
     //|> Seq.iter runAltNameSubsidieRegister

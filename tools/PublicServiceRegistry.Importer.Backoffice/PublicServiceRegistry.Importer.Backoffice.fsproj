@@ -4,19 +4,19 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Import\Update\batch_20180515_sarah.txt">
+    <Content Include="Import/Update/batch_20180515_sarah.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Import\SetAltLabelSubsidieRegister\batch_20190220_sarah_altname_subsidieregister.txt">
+    <Content Include="Import/SetAltLabelSubsidieRegister/batch_20190220_sarah_altname_subsidieregister.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Import\SetAltLabelIpdc\batch_20190220_sarah_altname_ipdc.txt">
+    <Content Include="Import/SetAltLabelIpdc/batch_20190220_sarah_altname_ipdc.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Import\SetCompetentAuthority\batch_20190220_sarah_compauth.txt">
+    <Content Include="Import/SetCompetentAuthority/batch_20190220_sarah_compauth.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Import\Register\batch_20190111_sarah.txt">
+    <Content Include="Import/Register/batch_20190111_sarah.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="paket.references" />
@@ -28,13 +28,12 @@
     <Compile Include="Register.fs" />
     <Compile Include="SetCompetentAuthority.fs" />
     <Compile Include="SetAltNameSubsidieRegister.fs" />
+    <Compile Include="SetIpdcCode.fs" />
     <Compile Include="Info.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <Target Name="VSTest">
       <Message Text="This line here because we otherwise we get issues with dotnet test ;(" />
   </Target>
-
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

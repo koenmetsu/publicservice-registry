@@ -128,6 +128,29 @@ module PublicService.Backoffice
         with
     | ex -> ex |> fail
 
+
+  let putIpdcCode apiBaseUri token ipdcCode dvrCode =
+    try
+      let updateRequest =
+        SetIpdcCode
+          .SetIpdcCode(
+              ipdcCode = ipdcCode
+              )
+          .JsonValue
+          .ToString()
+
+      Http.Request
+        ( url = sprintf "%s/v1/dienstverleningen/%s/ipdccode" apiBaseUri dvrCode,
+          body = HttpRequestBody.TextRequest updateRequest,
+          headers = [ ContentTypeWithEncoding (HttpContentTypes.Json, Text.Encoding.UTF8)
+                      Authorization (sprintf "Bearer %s" token) ],
+          httpMethod = HttpMethod.Patch,
+          silentHttpErrors = false
+        )
+      |> Success
+        with
+    | ex -> ex |> fail
+
   let getPublicService apiBaseUri dvrCode =
     try
 
