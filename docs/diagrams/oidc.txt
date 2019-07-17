@@ -1,0 +1,28 @@
+@startuml
+
+title
+OpenId Connect implementation
+end title
+
+hide footbox
+skinparam Padding 3
+
+actor User
+participant WebUI
+participant Api
+entity ACMIDM
+
+User -> WebUI: Klikt op aanmelden
+WebUI -> ACMIDM: Vraagt token
+activate ACMIDM
+ACMIDM --> User: Vraagt login
+User -> ACMIDM: Logt in
+return token
+WebUI -> Api: Exchange token voor code
+Api -> ACMIDM: Exchange token
+activate ACMIDM
+return Code met claims
+Api -> Api: Enrich claims
+Api --> WebUI: Jwt met claims
+
+@enduml
