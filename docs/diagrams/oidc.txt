@@ -13,16 +13,17 @@ participant Api
 entity ACMIDM
 
 User -> WebUI: Klikt op aanmelden
-WebUI -> ACMIDM: Vraagt token
+WebUI -> ACMIDM: Vraagt token via <font color=blue>https://authenticatie.vlaanderen</font>
 activate ACMIDM
-ACMIDM --> User: Vraagt login
+ACMIDM --> User: Toont login scherm
 User -> ACMIDM: Logt in
-return token
-WebUI -> Api: Exchange token voor code
+return callback op <font color=blue>/oic?code=token</font>
+WebUI -> Api: call <font color=blue>/security/exchange?code=token</font>
 Api -> ACMIDM: Exchange token
 activate ACMIDM
 return Code met claims
 Api -> Api: Enrich claims
 Api --> WebUI: Jwt met claims
+WebUI --> User: Gebruiker is aangemeld
 
 @enduml
