@@ -1,0 +1,130 @@
+
+@startuml
+
+hide stereotype
+
+skinparam {
+  note {
+    borderColor black
+    backgroundColor #FAF0E6
+  }
+
+  usecase {
+    arrowColor black
+  }
+
+  actor {
+    BorderColor black
+
+    BackgroundColor #FFF
+    Shadowing false
+  }
+
+  component {
+    borderColor black
+    backgroundColor #9dd7fb
+    fontColor #444
+  }
+}
+
+skinparam component<<external>> {
+  backgroundColor #AFB2EE
+  fontColor black
+}
+
+skinparam component<<provider>> {
+  backgroundColor #A088A0
+  fontColor black
+}
+
+
+:Beheerder: as Admin
+:Anonymous user: as User
+
+component Dienstverleningsregister [
+  <b>Dienstverleningsregister</b>
+
+  <i>(Software System)</i>
+
+  Base registry of public services.
+
+]
+
+component DataVlaanderen<<provider>> [
+  <b>Data Vlaanderen</b>
+
+  <i>(Software System)</i>
+
+
+]
+
+component Organisatieregister<<provider>> [
+  <b>Organisatieregister</b>
+
+  <i>(Software System)</i>
+
+
+]
+
+component ExternalConsumers<<external>> [
+  <b>Externe afnemers</b>
+
+  <i>(Software System)</i>
+
+
+]
+
+component ACM<<external>> [
+  <b>ACM</b>
+
+  <i>(Software System)</i>
+
+  Access Control Management
+]
+
+component OrafinFtp<<external>> [
+  <b>OrafinFtp</b>
+
+  <i>(Ftp drop server)</i>
+
+
+]
+
+note top of (User) #eee
+  Anybody on the web
+
+end note
+
+note top of (Admin) #eee
+  Superhuman
+
+end note
+
+note "maintains a list of\npublic services via" as AdminUCNote
+note "searches for\npublic services via" as UserUCNote
+
+
+User --> UserUCNote
+Admin --> AdminUCNote
+
+AdminUCNote ---> [Dienstverleningsregister]
+UserUCNote ---> [Dienstverleningsregister]
+
+note "provides \norganisation info for" as DataVlaanderenUCNote
+note "provides an api for\n" as ExternalConsumersUCNote
+note "gets auth info from\n" as ACMUCNote
+note "exports public services\nmarked for Orafin" as OrafinFtpUCNote
+
+[Dienstverleningsregister] <-left- [DataVlaanderenUCNote]
+[Dienstverleningsregister] --> [ExternalConsumersUCNote]
+[Dienstverleningsregister] --> [ACMUCNote]
+[Dienstverleningsregister] --> [OrafinFtpUCNote]
+
+[DataVlaanderenUCNote] <-- [DataVlaanderen]
+[DataVlaanderenUCNote] <-- [Organisatieregister]
+
+[ExternalConsumersUCNote] --> [ExternalConsumers]
+[ACMUCNote] --> [ACM]
+[OrafinFtpUCNote] --> [OrafinFtp]
+
+@enduml
